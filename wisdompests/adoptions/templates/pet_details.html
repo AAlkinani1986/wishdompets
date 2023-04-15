@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+   
+    
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 50px;">
+      <div class="card my-3">
+        <div class="card-body">
+          <h3 class="card-title">{{pet.name|capfirst}}</h3>
+          <p class="card-text">{{pet.species}}</p>
+          {% if pet.breed %}
+          <p class="card-text">Breed: {{pet.breed}}</p>
+          {% endif %} {% if pet.age %}
+          <p class="card-text">Age: {{pet.age}}</p>
+          {% endif %} {% if pet.sex %}
+          <p class="card-text">Sex: {{pet.sex}}</p>
+          {% endif %} {% if pet.vaccinations.all %}
+          <p class="card-text">Vaccinations:</p>
+          <ul class="list-unstyled">
+            {% for vaccination in pet.vaccinations.all %}
+            <li class="card-text">{{vaccination.name}}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <p class="card-text">Submitted by: {{pet.submitter}}</p>
+          <p class="card-text">Submitted on: {{pet.submission_date|date:"M d Y"}}</p>
+          <p class="card-text">{{pet.description}}</p>
+        </div>
+      </div>
+    </div>
+    
+    </style>
+{% endblock %}
